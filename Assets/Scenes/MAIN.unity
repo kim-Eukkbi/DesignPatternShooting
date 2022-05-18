@@ -617,6 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputAxis: {x: 0, y: 0}
   isShifted: 0
+  isSpaced: 0
 --- !u!114 &2048001837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,6 +659,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c32afdf6dcd5f4ba954252f33322d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletList:
+  - {fileID: 2957969910793430111, guid: b28895efb21b7dc4cbd7ff04b628d01b, type: 3}
+  - {fileID: 2259734835350025572, guid: c987ccc6c6ab7544f9bad6a336cbc16d, type: 3}
+  fireDelay: 0.1
 --- !u!1 &2142913427
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public List<GameObject> bulletList = new List<GameObject>();
+    public float fireDelay;
+
+
+    private PlayerInput input;
+
+
+    public void Start()
     {
-        
+        input = GetComponent<PlayerInput>();
+        StartCoroutine(Fire());
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public IEnumerator Fire()
     {
-        
+        while (true)
+        {
+            yield return new WaitForSeconds(fireDelay);
+            if (input.isSpaced)
+            {
+                Instantiate(bulletList[Random.Range(0, 2)], transform.position, Quaternion.Euler(0,0,90f));
+            }
+        }
     }
+
 }
