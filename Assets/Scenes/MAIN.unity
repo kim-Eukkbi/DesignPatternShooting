@@ -380,6 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2016828869}
   - component: {fileID: 2016828870}
+  - component: {fileID: 2016828871}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -452,6 +453,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2016828871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016828868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1b184b16161c1647a92b37a73c539a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0}
+  speed: 0.2
 --- !u!1 &2048001832
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bc892757afc14439c96103fd8b6c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
 --- !u!1 &2142913427
 GameObject:
   m_ObjectHideFlags: 0
