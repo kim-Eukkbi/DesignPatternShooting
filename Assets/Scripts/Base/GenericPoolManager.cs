@@ -6,13 +6,13 @@ public static class GenericPoolManager
 {
     private static Dictionary<string, object> poolDict = new Dictionary<string, object>();
 
-    public static void CratePool(Object obj, Transform parent)
+    public static void CratePool(string key, Object obj, Transform parent)
     {
-        poolDict.Add(obj.GetType().ToString(), new GenericPool<Object>(obj, parent, 5));
+        poolDict.Add(key, new GenericPool<Object>(obj, parent, 5));
     }
 
-    public static GenericPool<Object> GetPool<T>(object obj)
+    public static GenericPool<Object> GetPool<T>(string key)
     {
-        return poolDict[obj.GetType().ToString()] as GenericPool<Object>;
+        return poolDict[key] as GenericPool<Object>;
     }
 }
