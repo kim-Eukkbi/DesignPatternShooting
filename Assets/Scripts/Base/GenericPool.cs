@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GenericPool<T> where T : Object
 {
-    private Queue<Object> queue;
+    private Queue<T> queue;
     private Transform parent = null;
 
     private T prefab = null;
 
     public GenericPool(T prefab, Transform parent, int childCount = 5)
     {
-        queue = new Queue<Object>();
+        queue = new Queue<T>();
 
         this.prefab = prefab;
         this.parent = parent;
@@ -22,25 +22,25 @@ public class GenericPool<T> where T : Object
         }
     }
 
-    public GameObject GetPoolObject()
+    public T GetPoolObject()
     {
-        GameObject result = null;
+        T result = null;
 
         if(queue.Count > 0)
         {
             if(!(queue.Peek() as GameObject).activeSelf)
             {
-                result = queue.Dequeue() as GameObject;
+                result = queue.Dequeue();
                 queue.Enqueue(result);
             }
             else
             {
-                result = CreatePoolObj() as GameObject;
+                result = CreatePoolObj();
             }
         }
         else
         {
-            result = CreatePoolObj() as GameObject;
+            result = CreatePoolObj();
         }
         return result;
     }
