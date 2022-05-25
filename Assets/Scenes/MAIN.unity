@@ -689,9 +689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45c32afdf6dcd5f4ba954252f33322d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletList:
-  - {fileID: 2957969910793430111, guid: b28895efb21b7dc4cbd7ff04b628d01b, type: 3}
-  - {fileID: 2259734835350025572, guid: c987ccc6c6ab7544f9bad6a336cbc16d, type: 3}
+  bulletPrefab: {fileID: 5679067478834759550, guid: 6393a5ba38294b34ba17c4c111c4eeba, type: 3}
+  bulletSprites:
+  - {fileID: -8249999841398361288, guid: 4eb07989baaec34479df08ec1aec29ab, type: 3}
+  - {fileID: -2833730359478561349, guid: 4eb07989baaec34479df08ec1aec29ab, type: 3}
   fireDelay: 0.1
 --- !u!1 &2142913427
 GameObject:

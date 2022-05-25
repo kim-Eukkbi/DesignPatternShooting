@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public List<GameObject> bulletList = new List<GameObject>();
+    public GameObject bulletPrefab;
+    public List<Sprite> bulletSprites = new List<Sprite>();
     public float fireDelay;
 
 
     private PlayerInput input;
-
-    List<string> bulletKeys = new List<string>();
-
-
     public void Start()
     {
         input = GetComponent<PlayerInput>();
 
-        bulletKeys.Add("Bullet0");
-        bulletKeys.Add("Bullet1");
-
-        GenericPoolManager.CratePool(bulletKeys[0], bulletList[0], GameObject.Find("BulletParent").transform);
-        GenericPoolManager.CratePool(bulletKeys[1], bulletList[1], GameObject.Find("BulletParent").transform);
-
+        GenericPoolManager<GameObject>.CratePool("Bullet", bulletPrefab, GameObject.Find("BulletParent").transform);
 
         StartCoroutine(Fire());
     }
@@ -35,8 +27,10 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitForSeconds(fireDelay);
             if (input.isSpaced)
             {
-                Transform tr = (GenericPoolManager.GetPool<GameObject>(bulletKeys[Random.Range(0, 2)]).GetPoolObject() as GameObject).transform;
-                tr.position = transform.position;
+                Transform tr = (GenericPoolManager<GameObject>.GetPool("Bullet").GetPoolObject()).transform;
+                tr.GetComponent<SpriteRenderer>().sprite = bulletSprites[Random.Range(0, 2)];
+                tr.gameObject.SetActive(true);
+                tr.position = transform.position + Vector3.up * .5f;
                 tr.rotation = Quaternion.Euler(0, 0, 90f);
             }
         }
