@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4416003487626808053}
   m_Layer: 0
   m_Name: Enemy_Singleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1663426730085137577}
   m_Layer: 0
   m_Name: Enemy_Singleton_Sheet_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 1663426730503328045}
   m_Layer: 0
   m_Name: Enemy_Singleton_Sheet_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 1663426730581825063}
   m_Layer: 0
   m_Name: Enemy_Singleton_Sheet_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

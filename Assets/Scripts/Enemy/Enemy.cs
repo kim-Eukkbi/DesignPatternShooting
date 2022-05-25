@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour
 
     public IEnumerator FeadBack()
     {
+        print("Hit:" + gameObject.name);
         childSprites = transform.GetComponentsInChildren<SpriteRenderer>().ToList();
         childSprites.ForEach(x => x.material.color = Color.red);
         yield return new WaitForSeconds(.1f);

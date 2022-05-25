@@ -12,4 +12,13 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.instance.OnBulletHitEnemy?.Invoke();
+        }
+        gameObject.SetActive(false);
+    }
 }
