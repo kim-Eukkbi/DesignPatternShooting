@@ -10,10 +10,20 @@ public class PlayerAttack : MonoBehaviour
 
     private PlayerInput input;
 
+    List<string> bulletKeys = new List<string>();
+
 
     public void Start()
     {
         input = GetComponent<PlayerInput>();
+
+        bulletKeys.Add("Bullet0");
+        bulletKeys.Add("Bullet1");
+
+        GenericPoolManager.CratePool(bulletKeys[0], bulletList[0], GameObject.Find("BulletParent").transform);
+        GenericPoolManager.CratePool(bulletKeys[1], bulletList[1], GameObject.Find("BulletParent").transform);
+
+
         StartCoroutine(Fire());
     }
 
@@ -25,7 +35,9 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitForSeconds(fireDelay);
             if (input.isSpaced)
             {
-                Instantiate(bulletList[Random.Range(0, 2)], transform.position, Quaternion.Euler(0,0,90f));
+                Transform tr = (GenericPoolManager.GetPool<GameObject>(bulletKeys[Random.Range(0, 2)]).GetPoolObject() as GameObject).transform;
+                tr.position = transform.position;
+                tr.rotation = Quaternion.Euler(0, 0, 90f);
             }
         }
     }

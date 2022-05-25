@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericPool<T> where T : MonoBehaviour 
+public class GenericPool<T> where T : Object
 {
-    private Queue<T> queue;
+    private Queue<Object> queue;
     private Transform parent = null;
 
     private T prefab = null;
 
-    public void CreatePool(T prefab, Transform parent, int childCount = 5)
+    public GenericPool(T prefab, Transform parent, int childCount = 5)
     {
-        queue = new Queue<T>();
+        queue = new Queue<Object>();
 
         this.prefab = prefab;
         this.parent = parent;
@@ -22,36 +22,35 @@ public class GenericPool<T> where T : MonoBehaviour
         }
     }
 
-    public T GetPoolObject()
+    public GameObject GetPoolObject()
     {
-        T result = null;
+        GameObject result = null;
 
         if(queue.Count > 0)
         {
-            if(!queue.Peek().gameObject.activeSelf)
+            if(!(queue.Peek() as GameObject).activeSelf)
             {
-                result = queue.Dequeue();
+                result = queue.Dequeue() as GameObject;
                 queue.Enqueue(result);
             }
             else
             {
-                result = CreatePoolObj();
+                result = CreatePoolObj() as GameObject;
             }
         }
         else
         {
-            result = CreatePoolObj();
+            result = CreatePoolObj() as GameObject;
         }
-
-        result.gameObject.SetActive(true);
         return result;
     }
 
     private T CreatePoolObj()
     {
         T result = MonoBehaviour.Instantiate<T>(prefab, parent);
-        result.gameObject.SetActive(false);
         queue.Enqueue(result);
+
+        (result as GameObject).SetActive(false);
 
         return result;
     }
