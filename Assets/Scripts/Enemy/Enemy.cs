@@ -10,12 +10,22 @@ using System.Linq;
 public abstract class Enemy : MonoBehaviour
 {
     public float hp;
+    private List<IEnumerator> feedBacks = new List<IEnumerator>();
 
     private List<SpriteRenderer> childSprites = new List<SpriteRenderer>();
     public virtual void OnHit()
     {
-        StopAllCoroutines();
-        StartCoroutine(FeadBack());
+        for (int i = 0; i < feedBacks.Count;i++)
+        {
+            StopCoroutine(feedBacks[i]);
+        }
+
+        feedBacks.Add(FeadBack());
+
+        for (int i = 0; i < feedBacks.Count; i++)
+        {
+            StartCoroutine(feedBacks[i]);
+        }
     }
     public abstract void OnDead();
 

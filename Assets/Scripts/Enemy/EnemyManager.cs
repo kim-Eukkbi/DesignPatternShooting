@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
 {
     public Transform spawner;
     public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public List<GameObject> enemyBulletPrefabs = new List<GameObject>();
 
     private List<GameObject> tempList = new List<GameObject>();
     private Sequence tempSeq;
@@ -19,6 +20,11 @@ public class EnemyManager : MonoBehaviour
         for(int i =0; i<enemyPrefabs.Count;i++)
         {
             GenericPoolManager<GameObject>.CratePool(enemyPrefabs[i].name, enemyPrefabs[i], this.transform,5);
+        }
+
+        for (int i = 0; i < enemyBulletPrefabs.Count; i++)
+        {
+            GenericPoolManager<GameObject>.CratePool(enemyBulletPrefabs[i].name, enemyBulletPrefabs[i], GameManager.instance.gameObject.transform, 30);
         }
 
         tempSeq = DOTween.Sequence();
