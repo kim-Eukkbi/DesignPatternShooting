@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public Transform player;
 
     public void Awake()
     {
@@ -17,6 +18,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    public void Start()
+    {
+        player = GameObject.Find("Player").transform;
     }
 
     public UnityEvent OnBulletHitEnemy = new UnityEvent();

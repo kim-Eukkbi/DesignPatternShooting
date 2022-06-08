@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332c04c98c46d7a488e29561125edd24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   OnBulletHitEnemy:
     m_PersistentCalls:
       m_Calls: []
@@ -360,7 +361,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 412174681}
   enemyPrefabs:
-  - {fileID: 1663426729563594298, guid: 4c9dd84b59eeaeb44bc7a3ab3013c2df, type: 3}
+  - {fileID: 5978260060297826543, guid: 7298526b5d9d4754480a0db97d5929ea, type: 3}
+  enemyBulletPrefabs:
+  - {fileID: 6278972938678504656, guid: af5221c3bac4fdf4cbfc2042c951a893, type: 3}
 --- !u!1 &621335341
 GameObject:
   m_ObjectHideFlags: 0
