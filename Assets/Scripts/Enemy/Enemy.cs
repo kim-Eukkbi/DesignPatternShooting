@@ -12,7 +12,11 @@ public abstract class Enemy : MonoBehaviour
     public float hp;
 
     private List<SpriteRenderer> childSprites = new List<SpriteRenderer>();
-    public abstract void OnHit();
+    public virtual void OnHit()
+    {
+        StopAllCoroutines();
+        StartCoroutine(FeadBack());
+    }
     public abstract void OnDead();
 
     public IEnumerator FeadBack()

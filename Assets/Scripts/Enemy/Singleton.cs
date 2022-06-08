@@ -12,13 +12,17 @@ public class Singleton : Enemy
 
     public override void OnHit()
     {
-        StopAllCoroutines();
-        StartCoroutine(FeadBack());
+        hp--;
+        base.OnHit();
+        if(hp <= 0)
+        {
+            OnDead();
+        }
     }
 
 
     public override void OnDead()
     {
-
+        gameObject.SetActive(false);
     }
 }

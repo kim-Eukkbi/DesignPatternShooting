@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
 
-        GenericPoolManager<GameObject>.CratePool("Bullet", bulletPrefab, GameObject.Find("BulletParent").transform);
+        GenericPoolManager<GameObject>.CratePool("Bullet", bulletPrefab, GameObject.Find("BulletParent").transform,15);
 
         StartCoroutine(Fire());
     }
@@ -31,7 +31,7 @@ public class PlayerAttack : MonoBehaviour
                 tr.GetComponent<SpriteRenderer>().sprite = bulletSprites[Random.Range(0, 2)];
                 tr.gameObject.SetActive(true);
                 tr.position = transform.position + Vector3.up * .5f;
-                tr.rotation = Quaternion.Euler(0, 0, 90f);
+                tr.rotation = Quaternion.Euler(0, 0, 0f);
             }
         }
     }

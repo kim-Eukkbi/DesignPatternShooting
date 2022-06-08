@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            GameManager.instance.OnBulletHitEnemy?.Invoke();
+            collision.gameObject.GetComponent<Enemy>().OnHit();
         }
         gameObject.SetActive(false);
     }
