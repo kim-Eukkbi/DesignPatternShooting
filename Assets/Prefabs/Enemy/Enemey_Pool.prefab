@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 2098105710121578786}
   - component: {fileID: 3877468097139105188}
   m_Layer: 0
-  m_Name: Enemey_Pool_Sheet_0
+  m_Name: Enemey_Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
