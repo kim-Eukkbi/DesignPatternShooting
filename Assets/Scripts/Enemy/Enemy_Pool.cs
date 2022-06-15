@@ -58,7 +58,7 @@ public class Enemy_Pool : Enemy
         for (int i = count; i > 0; i--)
         {
             GameObject a;
-            a = GenericPoolManager<GameObject>.GetPool("Enemy_Pool_Bullet").GetPoolObject();
+            a = GenericPoolManager.GetPool<GameObject>("Enemy_Pool_Bullet").GetPoolObject();
             a.transform.position = transform.position;
             a.transform.Rotate(new Vector3(0f, 0f, 360 * i / count - 90));
             a.transform.DOMove(new Vector3(Mathf.Cos(Mathf.PI * 2 * i / count) / 1.5f + a.transform.position.x,
@@ -117,7 +117,7 @@ public class Enemy_Pool : Enemy
             float angle = a / count;
             float r = 270f;
 
-            bullet = GenericPoolManager<GameObject>.GetPool("Enemy_Pool_Bullet").GetPoolObject();
+            bullet = GenericPoolManager.GetPool<GameObject>("Enemy_Pool_Bullet").GetPoolObject();
 
             dir.x = Mathf.Cos((angle * i + r + angle / 2 - a / 2) * Mathf.Deg2Rad) / 1.5f;
             dir.y = Mathf.Sin((angle * i + r + angle / 2 - a / 2) * Mathf.Deg2Rad) / 1.5f;

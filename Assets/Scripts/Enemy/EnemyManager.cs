@@ -19,12 +19,12 @@ public class EnemyManager : MonoBehaviour
     {
         for(int i =0; i<enemyPrefabs.Count;i++)
         {
-            GenericPoolManager<GameObject>.CratePool(enemyPrefabs[i].name, enemyPrefabs[i], this.transform,5);
+            GenericPoolManager.CratePool(enemyPrefabs[i].name, enemyPrefabs[i], this.transform,5);
         }
 
         for (int i = 0; i < enemyBulletPrefabs.Count; i++)
         {
-            GenericPoolManager<GameObject>.CratePool(enemyBulletPrefabs[i].name, enemyBulletPrefabs[i], GameManager.instance.gameObject.transform, 100);
+            GenericPoolManager.CratePool(enemyBulletPrefabs[i].name, enemyBulletPrefabs[i], GameManager.instance.gameObject.transform, 100);
         }
 
         tempSeq = DOTween.Sequence();
@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
         for(int i =0;i<3;i++)
         {
             GameObject a;
-            a = GenericPoolManager<GameObject>.GetPool(enemyPrefabs[0].name).GetPoolObject();
+            a = GenericPoolManager.GetPool<GameObject>(enemyPrefabs[0].name).GetPoolObject();
             a.SetActive(true);
             a.transform.SetParent(spawner.transform);
             a.transform.position = new Vector3(i < 1 ? -2f : i > 1 ? 2f : 0f, spawner.transform.position.y);

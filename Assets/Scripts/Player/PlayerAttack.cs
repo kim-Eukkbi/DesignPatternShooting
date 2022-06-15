@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
     {
         input = GetComponent<PlayerInput>();
 
-        GenericPoolManager<GameObject>.CratePool("Bullet", bulletPrefab, GameObject.Find("BulletParent").transform,15);
+        GenericPoolManager.CratePool("Bullet", bulletPrefab, GameObject.Find("BulletParent").transform,15);
 
         StartCoroutine(Fire());
     }
@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
             yield return new WaitForSeconds(fireDelay);
             if (input.isSpaced)
             {
-                Transform tr = (GenericPoolManager<GameObject>.GetPool("Bullet").GetPoolObject()).transform;
+                Transform tr = (GenericPoolManager.GetPool<GameObject>("Bullet").GetPoolObject()).transform;
                 tr.GetComponent<SpriteRenderer>().sprite = bulletSprites[Random.Range(0, 2)];
                 tr.gameObject.SetActive(true);
                 tr.position = transform.position + Vector3.up * .5f;
