@@ -30,6 +30,12 @@ public class PlayerHit : MonoBehaviour
         List<SpriteRenderer> childSprites = null;
 
         p.hp--;
+
+        if(p.hp <= 0)
+        {
+            p.PlayerDead();
+        }
+
         print("Hit:" + gameObject.name);
         childSprites = transform.GetComponentsInChildren<SpriteRenderer>().ToList();
         childSprites.ForEach(x => x.material.color = Color.red);
