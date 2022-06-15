@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
     private PlayerInput input;
     public Vector2 clampAreaMIN;
     public Vector2 clampAreaMAX;
+    public float timeSlowrate = 0f;
+    public float slowSpeed = 0f;
     public float speed = 0f;
     public float dashSpeed = 0f;
 
@@ -18,10 +20,18 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if(input.isShifted)
+        if (input.isShifted)
+        {
             input.inputAxis = input.inputAxis.normalized * (Time.deltaTime * dashSpeed);
+        }
+        else if(input.isControled)
+        {
+            input.inputAxis = input.inputAxis.normalized * (Time.deltaTime * slowSpeed);
+        }
         else
+        {
             input.inputAxis = input.inputAxis.normalized * (Time.deltaTime * speed);
+        }
 
         transform.position += (Vector3)input.inputAxis;
 

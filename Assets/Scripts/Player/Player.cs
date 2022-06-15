@@ -13,5 +13,11 @@ public enum InputState
 public class Player : MonoBehaviour
 {
     public InputState inputState = InputState.Idle;
+    public float hp = 3;
 
+
+    public void PlayerDead()
+    {
+
+    }
 }

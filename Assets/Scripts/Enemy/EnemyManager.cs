@@ -24,10 +24,11 @@ public class EnemyManager : MonoBehaviour
 
         for (int i = 0; i < enemyBulletPrefabs.Count; i++)
         {
-            GenericPoolManager<GameObject>.CratePool(enemyBulletPrefabs[i].name, enemyBulletPrefabs[i], GameManager.instance.gameObject.transform, 30);
+            GenericPoolManager<GameObject>.CratePool(enemyBulletPrefabs[i].name, enemyBulletPrefabs[i], GameManager.instance.gameObject.transform, 100);
         }
 
         tempSeq = DOTween.Sequence();
+
         StartCoroutine(PattenOne());
     }
 
