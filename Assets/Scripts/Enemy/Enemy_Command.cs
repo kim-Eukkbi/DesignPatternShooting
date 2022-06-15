@@ -44,12 +44,12 @@ public class Enemy_Command : Enemy
     {
         for (int i = 0; i < 24; i++)
         {
+            transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, 60 + (i + 1) * 15), 0.1f);
+            yield return new WaitForSeconds(0.1f);
             foreach (var item in children)
             {
                 item.Fire(bulletPool.GetPoolObject(), 3f);
             }
-            transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, 60 + (i + 1) * 15), 0.1f);
-            yield return new WaitForSeconds(0.1f);
         }
 
         yield return null;
