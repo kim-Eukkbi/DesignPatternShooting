@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cff8994841522f846a9f1cf3b5347652
+guid: 7101c611f6e030048adb2dd56e025f3d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -11,9 +11,6 @@ TextureImporter:
   - first:
       213: 6973139288019492481
     second: Enemy_Command_Sheet_2
-  - first:
-      213: 1244363421949176659
-    second: Enemy_Command_Sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +55,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 350
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -173,27 +170,6 @@ TextureImporter:
       bones: []
       spriteID: 18ed8b7bc3195c060800000000000000
       internalID: 6973139288019492481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Enemy_Command_Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 35b25c870fdd44110800000000000000
-      internalID: 1244363421949176659
       vertices: []
       indices: 
       edges: []
