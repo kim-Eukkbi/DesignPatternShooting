@@ -29,4 +29,9 @@ public class Enemy_Command_Child : Enemy
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
         rigid.AddForce(transform.up * power, ForceMode2D.Impulse);
     }
+
+    public void FireMissile()
+    {
+
+    }
 }

@@ -32,7 +32,7 @@ public class Enemy_Command : Enemy
             children.Add(item);
         }
 
-        StartCoroutine(Pattern01());
+        StartCoroutine(Pattern02());
     }
 
     public override void OnDead()
@@ -44,7 +44,7 @@ public class Enemy_Command : Enemy
     {
         for (int i = 0; i < 24; i++)
         {
-            transform.DORotate(new Vector3(transform.rotation.x, transform.rotation.y, 60 + (i + 1) * 15), 0.1f);
+            transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + (i + 1) * 15), 0.1f);
             yield return new WaitForSeconds(0.1f);
             foreach (var item in children)
             {
@@ -57,6 +57,20 @@ public class Enemy_Command : Enemy
 
     private IEnumerator Pattern02()
     {
+        transform.DOMove(FindObjectOfType<Player>().transform.position + new Vector3(0, 3f), 0.5f);
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                children[i].Fire(bulletPool.GetPoolObject(), 3f);
+                yield return new WaitForSeconds(0.1f);
+            }
+
+            transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 120), 0.2f);
+            yield return new WaitForSeconds(0.2f);
+        }
         yield return null;
     }
 
