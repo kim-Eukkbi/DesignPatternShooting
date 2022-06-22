@@ -26,5 +26,6 @@ public class GameManager : MonoBehaviour
     }
 
     public UnityEvent OnBulletHitEnemy = new UnityEvent();
+    public UnityEvent<GameObject> OnEnemyBulletOutRange = new UnityEvent<GameObject>();
 
 }

@@ -23,6 +23,7 @@ public class EnemyBullet : MonoBehaviour
     {
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        GameManager.instance.OnEnemyBulletOutRange?.Invoke(this.gameObject);
         gameObject.SetActive(false);
     }
 }
