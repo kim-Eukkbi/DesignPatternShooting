@@ -23,7 +23,6 @@ public class Enemy_Command : Enemy
     private void Start()
     {
         bulletParent = GameObject.Find("BulletParent").transform;
-        GenericPoolManager.CratePool(poolKey, bullet, bulletParent, 30);
         bulletPool = GenericPoolManager.GetPool<GameObject>(poolKey);
 
         foreach (var item in GetComponentsInChildren<Enemy_Command_Child>())
