@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class EnemyManager : MonoBehaviour
 {
+    DiscoverDiary diary = new DiscoverDiary();
+
     public Transform spawner;
     public List<GameObject> enemyPrefabs = new List<GameObject>();
     public List<GameObject> enemyBulletPrefabs = new List<GameObject>();
@@ -14,6 +17,11 @@ public class EnemyManager : MonoBehaviour
 
     private WaitForSeconds oneSec = new WaitForSeconds(1f);
     private WaitForSeconds pointFiveSec = new WaitForSeconds(.5f);
+
+    private void Awake()
+    {
+        GenericPoolManager.FlushPool();
+    }
 
     public void Start()
     {
