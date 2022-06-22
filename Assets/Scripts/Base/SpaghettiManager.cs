@@ -24,5 +24,7 @@ public class SpaghettiManager : MonoBehaviour
             a.transform.position += new Vector3(0, 15f);
             a.SetActive(true);
         }
+
+        UIManager.Instance.Gameover();
     }
 }
