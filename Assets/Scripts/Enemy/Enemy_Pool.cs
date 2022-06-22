@@ -8,6 +8,10 @@ public class Enemy_Pool : Enemy
     public void Start()
     {
         StartCoroutine(PickPatten());
+        GameManager.instance.OnEnemyBulletOutRange.AddListener((bullet) =>
+        {
+            bullets.Remove(bullet);
+        });
     }
 
 
@@ -38,14 +42,14 @@ public class Enemy_Pool : Enemy
 
             if(patten == 0)
             {
-                StartCoroutine(PattenOne(Random.Range(3, 16), 0f));
+                StartCoroutine(PattenOne(Random.Range(4, 9), 0f));
             }
             else
             {
-                StartCoroutine(PattenTwo(Random.Range(1, 21), 0f));
+                StartCoroutine(PattenTwo(Random.Range(4, 7), 0f));
             }
             
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(Random.Range(1,4));
         }
     }
 
@@ -53,7 +57,7 @@ public class Enemy_Pool : Enemy
     public IEnumerator PattenOne(int count,float delay)
     {
         yield return new WaitForSeconds(delay);
-        List<GameObject> bullets = new List<GameObject>();
+       // List<GameObject> bullets = new List<GameObject>();
 
         for (int i = count; i > 0; i--)
         {
@@ -94,20 +98,12 @@ public class Enemy_Pool : Enemy
         }
 
         yield return new WaitForSeconds(2f);
-
-        for (int i = 0; i < bullets.Count; i++)
-        {
-            bullets[i].SetActive(false);
-        }
-
-        bullets.Clear();
     }
 
     public IEnumerator PattenTwo(int count, float delay)
     {
 
         yield return new WaitForSeconds(delay);
-        List<GameObject> bullets = new List<GameObject>();
 
         for (int i = 0; i < count; i++)
         {
@@ -135,9 +131,6 @@ public class Enemy_Pool : Enemy
         {
             bullets[i].GetComponent<Rigidbody2D>().AddForce(bullets[i].GetComponent<EnemyBullet>().dir * 5, ForceMode2D.Impulse);
         }
-
-
-        bullets.Clear();
     }
 
 }

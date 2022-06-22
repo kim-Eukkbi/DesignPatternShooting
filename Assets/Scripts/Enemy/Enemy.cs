@@ -13,6 +13,9 @@ public abstract class Enemy : MonoBehaviour
     private List<IEnumerator> feedBacks = new List<IEnumerator>();
 
     private List<SpriteRenderer> childSprites = new List<SpriteRenderer>();
+
+    public List<GameObject> bullets = new List<GameObject>();
+    
     public virtual void OnHit()
     {
         for (int i = 0; i < feedBacks.Count;i++)
