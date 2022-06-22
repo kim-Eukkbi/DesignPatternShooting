@@ -32,7 +32,7 @@ public class Enemy_Command : Enemy
             children.Add(item);
         }
 
-        StartCoroutine(Pattern02());
+        StartCoroutine(Pattern03());
     }
 
     public override void OnDead()
@@ -76,6 +76,12 @@ public class Enemy_Command : Enemy
 
     private IEnumerator Pattern03()
     {
+        for (int j = 0; j < 6; j++)
+        {
+            StartCoroutine(children[0].FireGuided(bulletPool.GetPoolObject(), FindObjectOfType<Player>().transform, 5f));
+            yield return new WaitForSeconds(0.1f);
+        }
+
         yield return null;
     }
 }

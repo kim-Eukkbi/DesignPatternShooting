@@ -30,8 +30,22 @@ public class Enemy_Command_Child : Enemy
         rigid.AddForce(transform.up * power, ForceMode2D.Impulse);
     }
 
-    public void FireMissile()
+    public IEnumerator FireGuided(GameObject bullet, Transform target, float power)
     {
+        Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
+        bullet.transform.position = transform.GetComponentInChildren<Transform>().position;
+        bullet.gameObject.SetActive(true);
 
+        float timer = 0f;
+        while (timer <= 3f)
+        {
+            timer += Time.deltaTime;
+            Vector2 dir = (target.position - transform.position).normalized;
+            bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90));
+
+            rigid.velocity = Vector2.zero;
+            rigid.velocity = bullet.transform.up * power;
+            yield return null;
+        }
     }
 }
