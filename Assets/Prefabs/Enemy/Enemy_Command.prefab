@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7239142204920098477}
   m_Layer: 0
   m_Name: Command_Child
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+  bullets: []
   parent: {fileID: 1761925193823189510}
 --- !u!1 &7406157582957668325
 GameObject:
@@ -158,7 +159,7 @@ GameObject:
   - component: {fileID: 5464657605955320690}
   m_Layer: 0
   m_Name: Command_Child
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +189,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
@@ -207,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+  bullets: []
   parent: {fileID: 1761925193823189510}
 --- !u!1 &7406157583303097606
 GameObject:
@@ -490,7 +492,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
+  bullets: []
   bullet: {fileID: 7061337294677036888, guid: 2e4f4bf051d3d594d8baf31e5b3662a4, type: 3}
+  children: []
 --- !u!1 &7406157583968581053
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +508,7 @@ GameObject:
   - component: {fileID: 2497584777428015827}
   m_Layer: 0
   m_Name: Command_Child
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,7 +538,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.4}
@@ -553,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
+  bullets: []
   parent: {fileID: 1761925193823189510}
 --- !u!1 &7406157584175126120
 GameObject:

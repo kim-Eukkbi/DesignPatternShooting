@@ -12,6 +12,11 @@ public static class GenericPoolManager
         poolDict.Clear();
     }
 
+    public static bool HasKey(string key)
+    {
+        return poolDict.ContainsKey(key);
+    }
+
     public static void CratePool<T>(string key, T obj, Transform parent, int count) where T : Object
     {
         poolDict.Add(key, new GenericPool<T>(obj, parent, count));

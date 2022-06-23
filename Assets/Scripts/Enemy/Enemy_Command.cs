@@ -13,7 +13,7 @@ public class Enemy_Command : Enemy
 
     GenericPool<GameObject> bulletPool = null;
 
-    List<Enemy_Command_Child> children = new List<Enemy_Command_Child>();
+    public List<Enemy_Command_Child> children = new List<Enemy_Command_Child>();
 
     private void Awake()
     {
@@ -23,15 +23,68 @@ public class Enemy_Command : Enemy
     private void Start()
     {
         bulletParent = GameObject.Find("BulletParent").transform;
+
+        if(!GenericPoolManager.HasKey(poolKey))
+        GenericPoolManager.CratePool(poolKey, bullet, bulletParent, 5);
+
         bulletPool = GenericPoolManager.GetPool<GameObject>(poolKey);
 
-        foreach (var item in GetComponentsInChildren<Enemy_Command_Child>())
+        if(children.Count < 1)
         {
-            item.parent = this;
-            children.Add(item);
+            foreach (var item in GetComponentsInChildren<Enemy_Command_Child>())
+            {
+                item.parent = this;
+                children.Add(item);
+            }
+        }
+        else
+        {
+            children.ForEach(item =>
+            {
+                item.gameObject.SetActive(true);
+            });
         }
 
-        StartCoroutine(Pattern03());
+        StartCoroutine(PickPatten());
+    }
+
+    public override void OnHit()
+    {
+        Debug.Log(children.FindAll(item => item.gameObject.activeSelf).Count < 1);
+        if(children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+        {
+            OnDead();
+        }
+    }
+
+    public IEnumerator PickPatten()
+    {
+        yield return new WaitForSeconds(2.5f);
+        int pattern;
+        while (true)
+        {
+            pattern = Random.Range(0, 3);
+            if (children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+            {
+                OnDead();
+                yield break;
+            }
+
+            if (pattern == 0)
+            {
+                StartCoroutine(Pattern01());
+            }
+            else if (pattern == 1)
+            {
+                StartCoroutine(Pattern02());
+            }
+            else
+            {
+                StartCoroutine(Pattern03());
+            }
+
+            yield return new WaitForSeconds(Random.Range(5, 8));
+        }
     }
 
     public override void OnDead()
@@ -41,11 +94,11 @@ public class Enemy_Command : Enemy
 
     private IEnumerator Pattern01()
     {
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < children.FindAll(item => item.gameObject.activeSelf).Count * 8; i++)
         {
             transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + (i + 1) * 15), 0.1f);
             yield return new WaitForSeconds(0.1f);
-            foreach (var item in children)
+            foreach (var item in children.FindAll(item => item.gameObject.activeSelf))
             {
                 item.Fire(bulletPool.GetPoolObject(), 3f);
             }
@@ -59,15 +112,16 @@ public class Enemy_Command : Enemy
         transform.DOMove(FindObjectOfType<Player>().transform.position + new Vector3(0, 3f), 0.5f);
         yield return new WaitForSeconds(0.5f);
 
-        for (int i = 0; i < 3; i++)
+        List<Enemy_Command_Child> activeChildren = children.FindAll(item => item.gameObject.activeSelf);
+        for (int i = 0; i < activeChildren.Count; i++)
         {
             for (int j = 0; j < 3; j++)
             {
-                children[i].Fire(bulletPool.GetPoolObject(), 3f);
+                activeChildren[i].Fire(bulletPool.GetPoolObject(), 3f);
                 yield return new WaitForSeconds(0.1f);
             }
 
-            transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - 120), 0.2f);
+            transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z - (360f / activeChildren.Count)), 0.2f);
             yield return new WaitForSeconds(0.2f);
         }
         yield return null;
@@ -77,7 +131,7 @@ public class Enemy_Command : Enemy
     {
         for (int j = 0; j < 6; j++)
         {
-            StartCoroutine(children[0].FireGuided(bulletPool.GetPoolObject(), FindObjectOfType<Player>().transform, 5f));
+            StartCoroutine(children.FindAll(item => item.gameObject.activeSelf)[0].FireGuided(bulletPool.GetPoolObject(), FindObjectOfType<Player>().transform, 5f));
             yield return new WaitForSeconds(0.1f);
         }
 

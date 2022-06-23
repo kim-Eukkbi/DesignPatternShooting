@@ -18,8 +18,22 @@ public class Enemy_Command_Child : Enemy
         gameObject.SetActive(false);
     }
 
+    public override void OnHit()
+    {
+        hp--;
+        base.OnHit();
+        if (hp <= 0)
+        {
+            parent.OnHit();
+            OnDead();
+        }
+    }
+
     public void Fire(GameObject bullet, float power)
     {
+        if (!gameObject.activeSelf)
+            return;
+
         bullet.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(transform.up.y, transform.up.x) * Mathf.Rad2Deg - 90));
 
         bullet.GetComponentInChildren<SpriteRenderer>().color = sr.color;
@@ -32,6 +46,9 @@ public class Enemy_Command_Child : Enemy
 
     public IEnumerator FireGuided(GameObject bullet, Transform target, float power)
     {
+        if (!gameObject.activeSelf)
+            yield break;
+
         Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
         bullet.transform.position = transform.GetComponentInChildren<Transform>().position;
         bullet.gameObject.SetActive(true);
