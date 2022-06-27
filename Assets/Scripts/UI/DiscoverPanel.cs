@@ -40,6 +40,12 @@ public class DiscoverPanel : MonoBehaviour
 
         gameObject.SetActive(true);
         cg.DOFade(1f, 2f).SetUpdate(true);
+
+        for (int i = 0; i < desginPatternImages.Length; i++)
+        {
+            desginPatternImages[i].gameObject.SetActive(false);
+        }
+
         desginPatternImages[(int)type].gameObject.SetActive(true);
         textPatternName.text = patternListSO.designPatternInfoList[(int)type].desginPatternName;
         textPatternInfo.text = patternListSO.designPatternInfoList[(int)type].infomation;
