@@ -15,7 +15,7 @@ public class SpaghettiManager : MonoBehaviour
         GenericPoolManager.CratePool("sp3", spaghetti3, transform, 5);
     }
 
-    public void SpawnSpaghetti()
+    public IEnumerator SpawnSpaghetti()
     {
         for (int i = 0; i < 5; i++)
         {
@@ -25,6 +25,13 @@ public class SpaghettiManager : MonoBehaviour
             a.SetActive(true);
         }
 
+
+        yield return new WaitForSeconds(2f);
         UIManager.Instance.Gameover();
+    }
+
+    internal void SpawnSpaghettiCall()
+    {
+        StartCoroutine(SpawnSpaghetti());
     }
 }

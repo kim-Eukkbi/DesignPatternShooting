@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         Collider2D[] cols =  Physics2D.OverlapCircleAll(Vector2.zero, 10).ToArray();
         cols.ToList().ForEach(x => x.gameObject.SetActive(false));
         sc.SetActive(true); // 이거 좀 바꿔야함
-        GameManager.instance.gameObject.GetComponent<SpaghettiManager>().SpawnSpaghetti();
+        GameManager.instance.gameObject.GetComponent<SpaghettiManager>().SpawnSpaghettiCall();
+        
     }
 }

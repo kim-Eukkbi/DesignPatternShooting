@@ -29,6 +29,7 @@ public class Enemy_Pool : Enemy
     public override void OnDead()
     {
         gameObject.SetActive(false);
+        GameManager.instance.GetComponent<EnemyManager>().RemoveEnemy(gameObject);
     }
 
     public IEnumerator PickPatten()

@@ -48,12 +48,14 @@ public class Enemy_Command : Enemy
         StartCoroutine(PickPatten());
     }
 
+
     public override void OnHit()
     {
         Debug.Log(children.FindAll(item => item.gameObject.activeSelf).Count < 1);
-        if(children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+        if (children.FindAll(item => item.gameObject.activeSelf).Count < 1)
         {
             OnDead();
+            
         }
     }
 
@@ -90,10 +92,17 @@ public class Enemy_Command : Enemy
     public override void OnDead()
     {
         gameObject.SetActive(false);
+        GameManager.instance.GetComponent<EnemyManager>().RemoveEnemy(gameObject);
     }
 
     private IEnumerator Pattern01()
     {
+        if (children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+        {
+            OnDead();
+            yield break;
+        }
+
         for (int i = 0; i < children.FindAll(item => item.gameObject.activeSelf).Count * 8; i++)
         {
             transform.DORotate(new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + (i + 1) * 15), 0.1f);
@@ -109,6 +118,12 @@ public class Enemy_Command : Enemy
 
     private IEnumerator Pattern02()
     {
+        if (children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+        {
+            OnDead();
+            yield break;
+        }
+
         transform.DOMove(FindObjectOfType<Player>().transform.position + new Vector3(0, 3f), 0.5f);
         yield return new WaitForSeconds(0.5f);
 
@@ -129,6 +144,12 @@ public class Enemy_Command : Enemy
 
     private IEnumerator Pattern03()
     {
+        if (children.FindAll(item => item.gameObject.activeSelf).Count < 1)
+        {
+            OnDead();
+            yield break;
+        }
+
         for (int j = 0; j < 6; j++)
         {
             StartCoroutine(children.FindAll(item => item.gameObject.activeSelf)[0].FireGuided(bulletPool.GetPoolObject(), FindObjectOfType<Player>().transform, 5f));
