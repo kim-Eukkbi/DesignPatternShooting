@@ -21,6 +21,9 @@ public class EnemyManager : MonoBehaviour
 
     public List<GameObject> pattenEnemy = new List<GameObject>();
 
+    private bool firstPool = true;
+    private bool firstCommend = true;
+
     private void Awake()
     {
         GenericPoolManager.FlushPool();
@@ -40,8 +43,7 @@ public class EnemyManager : MonoBehaviour
 
         tempSeq = DOTween.Sequence();
 
-
-        StartCoroutine(PattenTwo());
+        NextPatten();
     }
 
 
@@ -61,9 +63,19 @@ public class EnemyManager : MonoBehaviour
         switch(r)
         {
             case 0:
+                if(firstPool)
+                {
+                    firstPool = false;
+                    UIManager.Instance.Discover(EnemyType.Pool);
+                }
                 StartCoroutine(PattenOne());
                 break;
             case 1:
+                if (firstCommend)
+                {
+                    firstCommend = false;
+                    UIManager.Instance.Discover(EnemyType.Command);
+                }
                 StartCoroutine(PattenTwo());
                 break;
         }
